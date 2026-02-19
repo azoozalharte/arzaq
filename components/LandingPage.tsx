@@ -13,6 +13,7 @@ import {
   Star,
   Play
 } from "lucide-react";
+import LiveCounter from "./LiveCounter";
 
 interface LandingPageProps {
   onStartClick: () => void;
@@ -177,22 +178,32 @@ export default function LandingPage({ onStartClick }: LandingPageProps) {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.6, delay: 0.8 }}
-          className="mt-8 flex items-center gap-6 text-muted text-sm"
+          className="mt-8 flex flex-wrap items-center justify-center gap-6 text-muted text-sm"
         >
           <div className="flex items-center gap-2">
             <Shield className="w-4 h-4 text-secondary" />
             <span>لا حاجة لتسجيل</span>
           </div>
-          <div className="w-1 h-1 rounded-full bg-border" />
+          <div className="w-1 h-1 rounded-full bg-border hidden sm:block" />
           <div className="flex items-center gap-2">
             <Zap className="w-4 h-4 text-secondary" />
             <span>نتائج فورية</span>
           </div>
-          <div className="w-1 h-1 rounded-full bg-border" />
+          <div className="w-1 h-1 rounded-full bg-border hidden sm:block" />
           <div className="flex items-center gap-2">
             <Target className="w-4 h-4 text-secondary" />
             <span>متوافق مع ATS</span>
           </div>
+        </motion.div>
+
+        {/* Live Counter */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 1 }}
+          className="mt-12"
+        >
+          <LiveCounter />
         </motion.div>
 
         {/* Scroll indicator */}

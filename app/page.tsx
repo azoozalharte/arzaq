@@ -113,6 +113,14 @@ export default function Home() {
     localStorage.setItem(LOCAL_STORAGE_KEY, Date.now().toString());
   }, []);
 
+  const incrementCounter = useCallback(async () => {
+    try {
+      await fetch("/api/counter", { method: "POST" });
+    } catch (error) {
+      console.error("Error incrementing counter:", error);
+    }
+  }, []);
+
   const handleStartClick = useCallback(() => {
     setStage("upload");
     // Smooth scroll to upload section
@@ -170,6 +178,7 @@ export default function Home() {
         }
 
         recordLocalUsage();
+        incrementCounter();
         setResumeData(data.resumeData);
         setStage("preview");
       } catch (err) {
@@ -219,7 +228,7 @@ export default function Home() {
         setStage("job-description");
       }
     }
-  }, [file, recordLocalUsage]);
+  }, [file, recordLocalUsage, incrementCounter]);
 
   const handleSkillsComplete = useCallback(async (answers: SkillAnswer[]) => {
     if (!file || !jobDescription) return;
@@ -252,6 +261,7 @@ export default function Home() {
       }
 
       recordLocalUsage();
+      incrementCounter();
       setResumeData(data.resumeData);
       setStage("preview");
     } catch (err) {
@@ -259,7 +269,7 @@ export default function Home() {
       setError(err instanceof Error ? err.message : "An error occurred");
       setStage("skills-questionnaire");
     }
-  }, [file, jobDescription, recordLocalUsage]);
+  }, [file, jobDescription, recordLocalUsage, incrementCounter]);
 
   const handleDownload = useCallback(async () => {
     if (!resumeData) return;
