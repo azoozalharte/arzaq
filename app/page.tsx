@@ -65,8 +65,8 @@ interface JobAnalysis {
 const LOCAL_STORAGE_KEY = "arzaq_last_usage";
 const RATE_LIMIT_DURATION = 2 * 60 * 60 * 1000; // 2 hours in milliseconds
 
-// TODO: Set to false when you want to enable rate limiting
-const DISABLE_RATE_LIMIT = true;
+// Rate limiting enabled for production
+const DISABLE_RATE_LIMIT = false;
 
 export default function Home() {
   const [stage, setStage] = useState<Stage>("landing");

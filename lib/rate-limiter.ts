@@ -16,8 +16,8 @@ try {
 
 const RATE_LIMIT_DURATION = 2 * 60 * 60; // 2 hours in seconds
 
-// TODO: Set to false when you want to enable rate limiting
-const DISABLE_RATE_LIMIT = true;
+// Rate limiting enabled for production
+const DISABLE_RATE_LIMIT = false;
 
 // In-memory fallback for development
 const memoryStore = new Map<string, number>();
