@@ -10,6 +10,7 @@ interface LiveCounterProps {
 
 export default function LiveCounter({ className = "" }: LiveCounterProps) {
   const [count, setCount] = useState<number | null>(null);
+  const [isConfigured, setIsConfigured] = useState(true);
   const [isAnimating, setIsAnimating] = useState(false);
 
   useEffect(() => {
@@ -33,10 +34,16 @@ export default function LiveCounter({ className = "" }: LiveCounterProps) {
       }
 
       setCount(data.count);
+      setIsConfigured(data.configured !== false);
     } catch (error) {
       console.error("Error fetching counter:", error);
     }
   };
+
+  // Don't show counter if Redis is not configured and count is 0
+  if (!isConfigured && count === 0) {
+    return null;
+  }
 
   // Format number with Arabic-Indic numerals or commas
   const formatNumber = (num: number): string => {

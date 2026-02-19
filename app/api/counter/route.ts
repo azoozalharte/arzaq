@@ -21,15 +21,15 @@ const COUNTER_KEY = "arzaq:resume_count";
 export async function GET() {
   try {
     if (!redis) {
-      // Return a default count if Redis is not configured
-      return NextResponse.json({ count: 1247 });
+      // Redis not configured - return 0
+      return NextResponse.json({ count: 0, configured: false });
     }
 
     const count = await redis.get<number>(COUNTER_KEY) || 0;
-    return NextResponse.json({ count });
+    return NextResponse.json({ count, configured: true });
   } catch (error) {
     console.error("Error getting counter:", error);
-    return NextResponse.json({ count: 0 });
+    return NextResponse.json({ count: 0, configured: false });
   }
 }
 
@@ -37,13 +37,13 @@ export async function GET() {
 export async function POST() {
   try {
     if (!redis) {
-      return NextResponse.json({ count: 1248 });
+      return NextResponse.json({ count: 0, configured: false });
     }
 
     const newCount = await redis.incr(COUNTER_KEY);
-    return NextResponse.json({ count: newCount });
+    return NextResponse.json({ count: newCount, configured: true });
   } catch (error) {
     console.error("Error incrementing counter:", error);
-    return NextResponse.json({ count: 0 }, { status: 500 });
+    return NextResponse.json({ count: 0, configured: false }, { status: 500 });
   }
 }
