@@ -79,11 +79,29 @@ export default function CommunityPromo({ isOpen, onClose }: CommunityPromoProps)
                   </motion.div>
                 </div>
 
-                {/* Description */}
+                {/* Video */}
                 <motion.div
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.4 }}
+                  className="mb-6"
+                >
+                  <div className="relative w-full aspect-video rounded-2xl overflow-hidden border border-border shadow-lg">
+                    <iframe
+                      src="https://www.youtube.com/embed/PuuTY9WWxB8"
+                      title="شرح مجتمع ديوان الأتمتة"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                      className="absolute inset-0 w-full h-full"
+                    />
+                  </div>
+                </motion.div>
+
+                {/* Description */}
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.5 }}
                   className="bg-primary/5 border border-primary/10 rounded-2xl p-4 mb-6"
                 >
                   <p className="text-foreground text-sm leading-relaxed">
@@ -96,7 +114,7 @@ export default function CommunityPromo({ isOpen, onClose }: CommunityPromoProps)
                 <motion.div
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.5 }}
+                  transition={{ delay: 0.6 }}
                   className="grid grid-cols-2 gap-3 mb-6"
                 >
                   {[
@@ -119,7 +137,7 @@ export default function CommunityPromo({ isOpen, onClose }: CommunityPromoProps)
                 <motion.div
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.6 }}
+                  transition={{ delay: 0.7 }}
                   className="space-y-3"
                 >
                   <motion.button
@@ -144,7 +162,7 @@ export default function CommunityPromo({ isOpen, onClose }: CommunityPromoProps)
                 <motion.p
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
-                  transition={{ delay: 0.7 }}
+                  transition={{ delay: 0.8 }}
                   className="text-center text-xs text-muted mt-4"
                 >
                   حياك الله معنا في ديوان الأتمتة 🚀
