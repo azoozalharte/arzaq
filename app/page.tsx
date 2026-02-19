@@ -10,6 +10,7 @@ import JobDescriptionInput from "@/components/JobDescriptionInput";
 import SkillsQuestionnaire from "@/components/SkillsQuestionnaire";
 import ResumePreview from "@/components/ResumePreview";
 import RateLimitModal from "@/components/RateLimitModal";
+import CommunityPromo from "@/components/CommunityPromo";
 import { generatePDF, downloadPDF } from "@/lib/pdf-generator";
 
 type Stage =
@@ -78,6 +79,7 @@ export default function Home() {
   const [isDownloading, setIsDownloading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [showRateLimitModal, setShowRateLimitModal] = useState(false);
+  const [showCommunityPromo, setShowCommunityPromo] = useState(false);
   const [remainingTime, setRemainingTime] = useState(0);
 
   const uploadRef = useRef<HTMLDivElement>(null);
@@ -280,6 +282,11 @@ export default function Home() {
       const blob = await generatePDF(resumeData);
       const filename = `${resumeData.fullName.replace(/\s+/g, "_")}_Resume.pdf`;
       downloadPDF(blob, filename);
+
+      // Show community promo after successful download
+      setTimeout(() => {
+        setShowCommunityPromo(true);
+      }, 1000);
     } catch (err) {
       console.error("Error generating PDF:", err);
       setError("Failed to generate PDF");
@@ -449,6 +456,12 @@ export default function Home() {
         isOpen={showRateLimitModal}
         onClose={() => setShowRateLimitModal(false)}
         remainingTime={remainingTime}
+      />
+
+      {/* Community Promo Modal */}
+      <CommunityPromo
+        isOpen={showCommunityPromo}
+        onClose={() => setShowCommunityPromo(false)}
       />
     </div>
   );
