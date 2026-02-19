@@ -448,6 +448,17 @@ export default function Home() {
         <div className="max-w-5xl mx-auto px-4 text-center text-sm text-muted">
           <p>أرزاق - خدمة مجانية لتحسين السير الذاتية</p>
           <p className="mt-1">لا نقوم بحفظ أي بيانات - خصوصيتك مهمة لنا</p>
+          <p className="mt-3">
+            تم تطويره بـ ❤️ من قبل{" "}
+            <a
+              href="https://x.com/Azo_Abdulah"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-primary hover:text-secondary transition-colors font-medium"
+            >
+              @Azo_Abdulah
+            </a>
+          </p>
         </div>
       </footer>
 
